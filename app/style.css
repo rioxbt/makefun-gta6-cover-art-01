@@ -1,0 +1,133 @@
+/* Vice Cover Studio: a dark studio with neon edges, and the cover preview on a lit stage. */
+@font-face {
+  font-family: 'Anton';
+  font-style: normal;
+  font-weight: 400;
+  font-display: block;
+  src: url('./fonts/anton.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Pacifico';
+  font-style: normal;
+  font-weight: 400;
+  font-display: block;
+  src: url('./fonts/pacifico.woff2') format('woff2');
+}
+
+:root {
+  --ink: #f4eefb;
+  --dim: #9b8fb4;
+  --neon: #ff3ea5;
+  --cyan: #25e8ff;
+  --panel: #150b26;
+  --edge: #2c1c45;
+}
+
+* { box-sizing: border-box; }
+
+html, body { margin: 0; height: 100%; }
+
+body {
+  background: radial-gradient(120% 90% at 78% 8%, #2a1046 0%, #0d0618 55%, #070410 100%);
+  color: var(--ink);
+  font: 15px/1.45 system-ui, -apple-system, 'Segoe UI', sans-serif;
+}
+
+.studio { display: flex; height: 100%; }
+
+.rail {
+  width: 328px;
+  flex: none;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  overflow-y: auto;
+  background: linear-gradient(180deg, rgba(21, 11, 38, 0.96), rgba(10, 5, 20, 0.96));
+  border-right: 1px solid var(--edge);
+  box-shadow: 0 0 40px rgba(255, 62, 165, 0.12);
+}
+
+.brand h1 {
+  margin: 0;
+  font-family: 'Anton', Impact, sans-serif;
+  font-size: 25px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  background: linear-gradient(90deg, #ffe36e, #ff6fb0 55%, #6fd6ff);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.tag { margin: 0; color: var(--dim); font-size: 12.5px; }
+
+.field { display: flex; flex-direction: column; gap: 6px; font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--dim); }
+
+input[type='text'] {
+  font: 15px system-ui, sans-serif;
+  letter-spacing: normal;
+  text-transform: none;
+  color: var(--ink);
+  background: #0d0619;
+  border: 1px solid var(--edge);
+  border-radius: 8px;
+  padding: 9px 10px;
+}
+
+input[type='text']:focus { outline: none; border-color: var(--cyan); box-shadow: 0 0 0 2px rgba(37, 232, 255, 0.18); }
+
+input[type='range'] { accent-color: var(--neon); }
+
+.row { display: flex; gap: 8px; }
+
+.file, .ghost, .primary, .chip {
+  font: 600 13px system-ui, sans-serif;
+  border-radius: 8px;
+  border: 1px solid var(--edge);
+  cursor: pointer;
+}
+
+.file { flex: 1; padding: 9px 10px; text-align: center; color: var(--ink); background: #1d1032; }
+.file input { display: none; }
+
+.ghost { padding: 9px 10px; color: var(--ink); background: transparent; }
+.ghost:hover, .file:hover { border-color: var(--cyan); }
+
+.primary {
+  padding: 11px;
+  border: 0;
+  font-size: 14px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #14031a;
+  background: linear-gradient(90deg, #ffe36e, #ff5fae 60%, #7ad9ff);
+  box-shadow: 0 6px 22px rgba(255, 62, 165, 0.35);
+}
+
+.group { display: flex; flex-direction: column; gap: 7px; }
+
+.cap { font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--dim); }
+
+.chips { display: flex; flex-wrap: wrap; gap: 6px; }
+
+.chip { padding: 7px 10px; color: var(--dim); background: #150c26; }
+.chip.on { color: #14031a; background: linear-gradient(90deg, #7ad9ff, #ff5fae); border-color: transparent; }
+
+.strip { display: flex; flex-wrap: wrap; gap: 7px; min-height: 60px; }
+
+.thumb { padding: 0; width: 60px; height: 60px; border-radius: 8px; overflow: hidden; background: #0d0619; border: 1px solid var(--edge); cursor: pointer; }
+.thumb canvas { display: block; }
+.thumb.on { border-color: var(--cyan); box-shadow: 0 0 0 2px rgba(37, 232, 255, 0.25); }
+
+.status { margin: 0; color: var(--dim); font-size: 12px; }
+
+.stage { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 14px; padding: 24px; }
+
+#cover { box-shadow: 0 20px 70px rgba(0, 0, 0, 0.65); border-radius: 4px; background: #0b0413; }
+
+.hint { margin: 0; color: #7b6f96; font-size: 12.5px; }
+
+body.shot-cover .rail, body.shot-cover .hint { display: none; }
+body.shot-cover .stage { padding: 0; gap: 0; }
+body.shot-cover #cover { width: 100vw; height: 100vh; box-shadow: none; border-radius: 0; }
